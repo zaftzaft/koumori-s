@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Koumori S</title>
+    <link href="dist/style.css" rel="stylesheet">
+  </head>
+  <body>
+    <main>
+
+      <div id="graph"></div>
+
+      <aside id="sidebar">
+        <nav>
+          <svg ref="svg" height="40" width="40" viewBox="55 65 100 100" @click="scan()"></svg>
+          <div class="device-info" @click="mode = 'preference'">
+            <div class="name">wlp3s0</div>
+            <div class="interval">-</div>
+          </div>
+        </nav>
+
+        <filterbox v-if="mode == 'filterbox'"></filterbox>
+        <preference v-if="mode == 'preference'"></preference>
+
+      </aside>
+
+
+    </main>
+
+
+    <script type="x-template" id="template-filterbox">
+      <div id="filterbox">
+
+        <ul class="band-tab">
+          <li :class="{ active: band === 'w24'}" @click="band = 'w24'">2.4Ghz({{count.w24}})</li>
+          <li :class="{ active: band === 'w52'}" @click="band = 'w52'">5.2Ghz({{count.w52}})</li>
+          <li :class="{ active: band === 'w56'}" @click="band = 'w56'">5.6Ghz({{count.w56}})</li>
+        </ul>
+
+        <div class="filter-form">
+          <input type="text" v-model="query" placeholder="SSID filter">
+          <select v-model="signalFilter">
+            <option v-for="v in signals" v-bind:value="v" v-text="v"></option>
+          </select>
+        </div>
+
+        <div class="filterbox-list">
+
+          <table>
+            <thead>
+              <tr>
+                <th>SSID</th>
+                <th class="table-signal">dB</th>
+                <th class="table-ch">ch</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr v-for="d in dataset">
+                <td>
+                  <span :style="{'color': d.color}">●</span>
+                  <span v-text="d.ssid"></span>
+                </td>
+
+                <td v-text="d.signal"></td>
+                <td>{{f2c(d.freq)}}</td>
+              </tr>
+            </tbody>
+
+          </table>
+
+
+        </div>
+      </div>
+
+    </script>
+
+
+    <script type="x-template" id="template-preference">
+      <div id="preference">
+        <h2>Preference</h2>
+        <h4>cmd</h4>
+        <input type="radio" id="cmd-iw" value="iw" v-model="cmd">
+        <label for="cmd-iw">iw</label>
+        <input type="radio" id="cmd-wireless" value="wireless" v-model="cmd">
+        <label for="cmd-wireless">wireless_tools/iwlist</label>
+        <h4>interface</h4>
+
+        <h4>Auto Scan</h4>
+        <input type="checkbox">
+
+        <h4>Interval</h4>
+        <input type="number">
+
+      </div>
+    </script>
+
+
+    <script src="dist/bundle.js"></script>
+  </body>
+</html>
