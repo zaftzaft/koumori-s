@@ -84,6 +84,9 @@ main
       padding: 0.1rem 1rem
 
 #filterbox
+  height: calc(100% - 40px)
+  overflow-y: auto
+
   .filterbox-list
     width: 100%
     table
@@ -91,6 +94,17 @@ main
 
   .filter-form
     padding: 0.5rem
+
+  .table-signal, .table-ch
+    width: 5ch
+
+  td, th
+    white-space: nowrap
+    text-overflow: ellipsis
+    max-width: 1rem
+    overflow: hidden
+    text-align: left
+    padding: 0.2rem 0.5rem
 
 ul.band-tab
   display: flex
