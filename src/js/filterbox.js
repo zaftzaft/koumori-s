@@ -4,7 +4,6 @@ const Vue = require("vue");
 const Utils = require("./utils");
 
 module.exports = options => {
-  //const filterbox = new Vue({
   const filterbox = {
     //el: "#filterbox",
     template: "#template-filterbox",
@@ -23,10 +22,9 @@ module.exports = options => {
     methods: {
       f2c(f) {
         return Utils.freqToChannel(f);
-      }
-    },
-    created() {
-      options.store.on("update-dataset", (dataset) => {
+      },
+
+      updateDataset(dataset) {
         let counter = [0, 0, 0]; // 2.4 5.2 5.6
         dataset.forEach(d => {
           const f = d.freq;
@@ -44,7 +42,11 @@ module.exports = options => {
         this.count.w52 = counter[1];
         this.count.w56 = counter[2];
         this.dataset = dataset;
-      });
+
+      }
+    },
+    created() {
+      options.store.on("update-dataset", this.updateDataset);
 
       this.$watch("query", function() {
         options.store.setQueryFilter(this.query ? new RegExp(`.*${this.query}.*`) : null);
@@ -58,12 +60,14 @@ module.exports = options => {
         options.wifiGraph.update(options.WifiDefine[v]);
       });
 
+      options.store.updateDataset();
+
+    },
+    beforeDestroy() {
+      options.store.removeListener("update-dataset", this.updateDataset);
     }
 
-  //});
   };
-
-
 
 
   return filterbox;

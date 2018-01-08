@@ -71,9 +71,13 @@ const sidebar = new Vue({
         wifiIcon.stop();
       });
 
+    },
+    toggleMode() {
+      this.mode = this.mode === "preference" ? "filterbox" : "preference";
     }
 
   }
+
 });
 
 
