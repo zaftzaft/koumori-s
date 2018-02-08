@@ -33,7 +33,7 @@ module.exports = (iwscanStream) => {
     rl.on("line", line => {
       line = line.trim();
 
-      if(/^BSS/.test(line)) {
+      if(/^BSS ..:..:..:..:..:../.test(line)) {
         if(obj) {
           results.push(Object.assign({}, obj));
         }
