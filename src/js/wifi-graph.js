@@ -1,8 +1,5 @@
 'use strict';
 const d3 = require("d3");
-//const ouiLookup = require("./oui-lookup.js");
-
-const ouiLookup = () => "";
 
 class WifiGraph {
 
@@ -21,6 +18,8 @@ class WifiGraph {
     //this.maxSignal = 0;
     this.maxSignal = options.maxSignal || -30;
     this.minSignal = options.minSignal || -100;
+
+    this.ouiLookup = options.ouiLookup;
 
 
     this.dataset = null;
@@ -279,7 +278,7 @@ class WifiGraph {
         //${oui(d.source)}<br>
         that.$tooltip.html(`
           ${d.ssid}<br>
-          ${d.mac} ${ouiLookup(d.mac)}<br>
+          ${d.mac} ${that.ouiLookup(d.mac)}<br>
           ${d.signal} dB
           `);
         that.$tooltip.style("visibility", "visible");

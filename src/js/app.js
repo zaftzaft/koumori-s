@@ -9,13 +9,15 @@ const WifiScan = require("./wifi-scan");
 const Store = require("./store");
 //const iwlist = require("./parser/iwlist");
 const store = new Store();
+const ouiLookup = require("./oui-lookup");
 
 
 const wifiGraph = new WifiGraph(Object.assign({
   maxSignal: -20,
   margin: {
     top: 20
-  }
+  },
+  ouiLookup
 }, WifiDefine.w24));
 
 
