@@ -61,7 +61,8 @@ const sidebar = new Vue({
     scan() {
 
       wifiIcon.start();
-      wifiScan.scan("iwlist", "wlp3s0")
+      //wifiScan.scan("iwlist", "wlp3s0")
+      wifiScan.scan("iwscan", "wlp3s0")
       .then(res => {
         console.log(res);
         store.setDataset(res);

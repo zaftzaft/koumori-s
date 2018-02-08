@@ -5,6 +5,7 @@ const readline = require("readline");
 const {spawn} = require("child_process");
 
 const iwlistParser = require("./iwlist-parser");
+const iwscanParser = require("./iwscan-parser");
 
 const rl = readline.createInterface({
   input:  process.stdin,
@@ -38,10 +39,12 @@ rl.on("line", line => {
 
 
   }
-//  else {
-//    console.log("o");
-//  }
-
+  else if(cmd === "iwscan") {
+    const iwscanStream = spawn("iw", ["dev", o[1], "scan"]);
+    iwscanParser(iwscanStream.stdout).then(res => {
+      console.log(JSON.stringify(res));
+    });
+  }
 
 });
 
