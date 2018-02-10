@@ -1,6 +1,7 @@
 'use strict';
 
 const d3 = require("d3");
+const nipponcolors = require("./nipponcolors");
 
 
 const freqMap = {
@@ -60,6 +61,7 @@ const to3339 = t => {
 
 const getColor = (function(){
   let colors = [].concat(
+    nipponcolors,
     d3.schemeCategory20,
     d3.schemeCategory20b,
     d3.schemeCategory20c
