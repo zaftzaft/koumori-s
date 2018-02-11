@@ -68,6 +68,14 @@ const getColor = (function(){
   );
   let index = 0;
 
+  // shuffle
+  for(let i = colors.length - 1; i > 0; i--){
+    let r = Math.floor(Math.random() * (i + 1));
+    let tmp = colors[i];
+    colors[i] = colors[r];
+    colors[r] = tmp;
+  }
+
   return () => {
     index >= colors.length && (index = 0);
     return colors[index++];
