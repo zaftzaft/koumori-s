@@ -57,6 +57,7 @@ module.exports = (iwscanStream) => {
     });
 
     rl.on("close", () => {
+      obj && results.push(Object.assign({}, obj));
       resolv(results);
     });
 
