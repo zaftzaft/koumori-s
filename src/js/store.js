@@ -16,6 +16,7 @@ class Store extends EventEmitter {
     this.queryFilter = null;
     this.signalFilter = -100;
 
+    this.iwcmd = "iw";
   }
 
 

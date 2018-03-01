@@ -8,7 +8,12 @@ module.exports = options => {
     template: "#template-preference",
     data() {
       return {
-        cmd: "iw"
+        cmd: options.store.iwcmd
+      }
+    },
+    watch: {
+      cmd(val) {
+        options.store.iwcmd = val;
       }
     }
   };

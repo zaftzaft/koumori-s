@@ -30,7 +30,7 @@ const filterbox = require("./filterbox")({
 });
 
 const preference = require("./preference")({
-
+  store
 });
 
 
@@ -61,10 +61,17 @@ const sidebar = new Vue({
   },
   methods: {
     scan() {
+      let cmd;
+
+      if(store.iwcmd === "iw") {
+        cmd = "iwscan";
+      }
+      else if(store.iwcmd === "wireless") {
+        cmd = "iwlist";
+      }
 
       wifiIcon.start();
-      //wifiScan.scan("iwlist", "wlp3s0")
-      wifiScan.scan("iwscan", "wlp3s0")
+      wifiScan.scan(cmd, "wlp3s0")
       .then(res => {
         console.log(res);
         store.setDataset(res);
