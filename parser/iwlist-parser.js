@@ -55,7 +55,7 @@ module.exports = iwlistStream => {
         }
         obj = {};
 
-        obj.mac = line.split("Address: ")[1];
+        obj.mac = line.split("Address: ")[1].toLowerCase();
       }
       else if(/^ESSID/.test(line)) {
         let ssid = line.split("SSID:")[1].replace(/\"/g, "");
