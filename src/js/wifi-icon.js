@@ -56,6 +56,17 @@ class WifiIcon {
     this.render();
   }
 
+
+  red() {
+    this.paths[3][1] = "#f00";
+    this.render();
+
+    setTimeout(() => {
+      this.paths[3][1] = "#fff";
+    }, 3000);
+  }
+
+
   render() {
     let bind = this.grp
       .selectAll("path")
