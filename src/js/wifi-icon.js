@@ -63,7 +63,7 @@ class WifiIcon {
 
     setTimeout(() => {
       this.paths[3][1] = "#fff";
-    }, 3000);
+    }, 500);
   }
 
 

@@ -70,6 +70,11 @@ const sidebar = new Vue({
         cmd = "iwlist";
       }
 
+      if(wifiScan.lock) {
+        wifiIcon.red();
+        return;
+      }
+
       wifiIcon.start();
       wifiScan.scan(cmd, "wlp3s0")
       .then(res => {
