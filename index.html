@@ -14,7 +14,7 @@
         <nav>
           <svg ref="svg" height="40" width="40" viewBox="55 65 100 100" @click="scan()"></svg>
           <div class="device-info" @click="toggleMode()">
-            <div class="name">wlp3s0</div>
+            <div class="name" v-text="device"></div>
             <div class="interval">-</div>
           </div>
         </nav>
@@ -84,7 +84,12 @@
         <label for="cmd-iw">iw</label>
         <input type="radio" id="cmd-wireless" value="wireless" v-model="cmd">
         <label for="cmd-wireless">wireless_tools/iwlist</label>
+
         <h4>interface</h4>
+        <div v-for="d in devices" @click="setDevice(d.name)">
+          <span v-text="d.txpower > 0 ? '●' : '○'" style="color:#90b44b"></span>
+          <span v-text="d.name"></span>
+        </div>
 
         <h4>Auto Scan</h4>
         <input type="checkbox">

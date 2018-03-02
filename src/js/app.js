@@ -49,7 +49,8 @@ const sidebar = new Vue({
   el: "#sidebar",
   data() {
     return {
-      mode: "filterbox"
+      mode: "filterbox",
+      device: null
     };
   },
   components: {
@@ -62,6 +63,11 @@ const sidebar = new Vue({
   methods: {
     scan() {
       let cmd;
+
+      if(!store.device) {
+        wifiIcon.red();
+        return;
+      }
 
       if(store.iwcmd === "iw") {
         cmd = "iwscan";
@@ -76,7 +82,7 @@ const sidebar = new Vue({
       }
 
       wifiIcon.start();
-      wifiScan.scan(cmd, "wlp3s0")
+      wifiScan.scan(cmd, store.device)
       .then(res => {
         console.log(res);
         store.setDataset(res);
@@ -93,6 +99,11 @@ const sidebar = new Vue({
 
   }
 
+});
+
+
+store.on("update-device", device => {
+  sidebar.device = device;
 });
 
 

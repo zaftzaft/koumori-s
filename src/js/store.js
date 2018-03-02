@@ -17,6 +17,7 @@ class Store extends EventEmitter {
     this.signalFilter = -100;
 
     this.iwcmd = "iw";
+    this.device = null;
   }
 
 
@@ -69,6 +70,11 @@ class Store extends EventEmitter {
     this.updateDataset();
   }
 
+
+  setDevice(device) {
+    this.device = device;
+    this.emit("update-device", this.device);
+  }
 
 }
 
