@@ -58,11 +58,12 @@ class WifiIcon {
 
 
   red() {
-    this.paths[3][1] = "#f00";
+    this.paths[3][1] = "#CB1B45";
     this.render();
 
     setTimeout(() => {
       this.paths[3][1] = "#fff";
+      this.render();
     }, 500);
   }
 

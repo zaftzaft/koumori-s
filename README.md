@@ -5,7 +5,8 @@ koumori-s
 
 ## TODO
 - Preference
-  - [ ] select wireless device
+  - [x] select wireless device
   - [ ] apply button
+  - [ ] save preference
 
 - [ ] save & replay
