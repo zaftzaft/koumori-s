@@ -1,5 +1,7 @@
 primary = #20604f
 secondary = #90b44b
+disable = #B5CAA0
+
 
 
 html, body
@@ -151,4 +153,15 @@ ul.band-tab
   h4
     margin-top: 1rem
     margin-bottom: 0.5rem
+
+  .device
+    padding: .25rem .5rem
+    cursor: pointer
+
+    &.disable
+      color: disable
+      cursor: not-allowed
+
+    &:hover
+      color: secondary
 

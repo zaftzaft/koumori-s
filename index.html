@@ -86,7 +86,7 @@
         <label for="cmd-wireless">wireless_tools/iwlist</label>
 
         <h4>interface</h4>
-        <div v-for="d in devices" @click="setDevice(d.name)">
+        <div v-for="d in devices" @click="setDevice(d.name)" class="device" v-bind:class="{disable: d.txpower == 0}">
           <span v-text="d.txpower > 0 ? '●' : '○'" style="color:#90b44b"></span>
           <span v-text="d.name"></span>
         </div>
